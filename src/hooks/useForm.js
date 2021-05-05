@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const types = {
   cpf: {
-    regex: /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/,
+    regex: /^\d{3}\.\d{3}\.\d{3}-\d{2}$/,
     message: "Preencha um cpf válido"
   }
 }
@@ -10,6 +10,7 @@ const types = {
 const useForm = (type) => {
   const [value, setValue] = useState("")
   const [error, setError] = useState(null)
+  
 
   function validateCPF(value) {
     if (type === false) return true
@@ -23,12 +24,11 @@ const useForm = (type) => {
   }
 
   function onChange(e) {
-    console.log(e.target.value)
     if (error) validateCPF(e.target.value)
-
-    if (e.target.type === "checkbox"){
+    if (e.target.type === "checkbox") {
       setValue(e.target.checked)
-    }else{
+      
+    } else {
       setValue(e.target.value)
     }
 
@@ -37,3 +37,5 @@ const useForm = (type) => {
     value, setValue, error, onChange, onBlur: () => validateCPF(value)
   }
 }
+
+export default useForm
