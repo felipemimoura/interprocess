@@ -20,10 +20,6 @@ const Form = () => {
       gender: gender.value,
       userActive: userActive.value
     }
-    localStorage.setItem('patient', JSON.stringify(addPatient))
-    
-    
-    
   }
 
   return (
