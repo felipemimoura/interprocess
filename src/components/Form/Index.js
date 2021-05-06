@@ -1,12 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import Input from '../Inputs/Index'
 import Button from '../Button/Index'
 import useForm from '../../hooks/useForm'
-import { UserContext } from '../../UserContext'
+
 
 
 const Form = () => {
-  const { states, setters } = useContext(UserContext)
   const [pacientes, setPacientes] = useState([])
   const name = useForm()
   const birthdate = useForm()

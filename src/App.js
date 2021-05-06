@@ -1,5 +1,6 @@
 import './App.css';
 import Form from './components/Form/Index';
+import Home from './components/Home/Index';
 import { UserStorage } from './UserContext';
 
 function App() {
@@ -7,7 +8,8 @@ function App() {
   return (
     <div className="App">
       <UserStorage>
-        <Form />
+        <Home />
+        {/* <Form /> */}
       </UserStorage>
     </div>
   );
