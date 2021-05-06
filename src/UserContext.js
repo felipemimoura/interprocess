@@ -4,18 +4,30 @@ export const UserContext = createContext()
 
 export const UserStorage = ({ children }) => {
   const [patient, setPatient] = useState([])
+  const [patientFilter, setPatientFilter] = useState([])
+  console.log(patientFilter)
 
   useEffect(() => {
     const patient = JSON.parse(localStorage.getItem("patient"))
-    setPatient(patient)
+
+
+    if (patient) {
+      setPatient(patient)
+      setPatientFilter(patient)
+    } else {
+      setPatient([])
+      setPatientFilter([])
+    }
   }, [])
 
   const states = {
-    patient
+    patient,
+    patientFilter
   }
 
   const setters = {
-    setPatient
+    setPatient,
+    setPatientFilter
   }
 
   const data = { states, setters }

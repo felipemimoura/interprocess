@@ -10,7 +10,6 @@ const types = {
 const useForm = (type) => {
   const [value, setValue] = useState("")
   const [error, setError] = useState(null)
-  
 
   function validateCPF(value) {
     if (type === false) return true
@@ -27,11 +26,9 @@ const useForm = (type) => {
     if (error) validateCPF(e.target.value)
     if (e.target.type === "checkbox") {
       setValue(e.target.checked)
-      
     } else {
       setValue(e.target.value)
     }
-
   }
   return {
     value, setValue, error, onChange, onBlur: () => validateCPF(value)

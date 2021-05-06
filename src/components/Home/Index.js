@@ -4,16 +4,13 @@ import PatientCard from '../PatientCard/Index'
 
 const Home = () => {
   const { states } = useContext(UserContext)
-  // console.log(states)
-  const patient = states.patient
-  console.log(patient[1])
+  const patient = states.patientFilter
   return (
     <ul>
       {patient && patient.map((p) => {
-        console.log(p)
-        return <PatientCard name={p.name} birthDate={p.birthDate} gender={p.gender} cpf={p.cpf} active={p.userActive} />
+        return <PatientCard key={p.id} name={p.name} birthDate={p.birthDate} gender={p.gender} cpf={p.cpf} active={p.userActive} />
       })}
-    </ul> 
+    </ul>
   )
 }
 
