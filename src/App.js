@@ -1,3 +1,4 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Form from './components/Form/Index';
 import Home from './components/Home/Index';
@@ -7,10 +8,17 @@ function App() {
 
   return (
     <div className="App">
-      <UserStorage>
-        <Home />
-        {/* <Form /> */}
-      </UserStorage>
+      <BrowserRouter>
+        <UserStorage>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cadastro" element={<Form />} />
+          </Routes>
+
+
+        </UserStorage>
+
+      </BrowserRouter>
     </div>
   );
 }
