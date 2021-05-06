@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import Input from '../Inputs/Index'
 import Button from '../Button/Index'
 import useForm from '../../hooks/useForm'
+import { UserContext } from '../../UserContext'
 
 
 const Form = () => {
+  const { states, setters } = useContext(UserContext)
+  const [pacientes, setPacientes] = useState([])
   const name = useForm()
   const birthdate = useForm()
   const cpf = useForm("cpf")
   const userActive = useForm()
   const gender = useForm()
+
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -20,6 +24,8 @@ const Form = () => {
       gender: gender.value,
       userActive: userActive.value
     }
+    pacientes.push(addPatient)
+    localStorage.setItem('patient', JSON.stringify(pacientes))
   }
 
   return (
