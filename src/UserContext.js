@@ -4,12 +4,10 @@ export const UserContext = createContext()
 
 export const UserStorage = ({ children }) => {
   const [patient, setPatient] = useState([])
-  console.log(patient)
 
   useEffect(() => {
     const patient = JSON.parse(localStorage.getItem("patient"))
     setPatient(patient)
-   
   }, [])
 
   const states = {
@@ -20,7 +18,7 @@ export const UserStorage = ({ children }) => {
     setPatient
   }
 
-  const data = {states, setters}
+  const data = { states, setters }
 
   return (
     <UserContext.Provider value={data}>
