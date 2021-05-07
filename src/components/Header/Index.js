@@ -9,7 +9,7 @@ const Header = () => {
   const paciente = [...states.patient]
   const [searchInput, setSearchInput] = useState("")
   const history = useHistory()
-  console.log("header", paciente)
+
 
   const handleChange = ({ target }) => {
     setSearchInput(target.value)
@@ -18,19 +18,20 @@ const Header = () => {
   useEffect(() => {
     const result = paciente.filter(p => p.name.toLowerCase().includes(searchInput))
     setters.setPatientFilter(result)
-   
 
   }, [searchInput])
 
 
 
-
+  const goToHome = () =>{
+    goTo(history, "/", "")
+  }
   const handleClick = () => {
     goTo(history, "/cadastro", "")
   }
   return (
     <S.Header>
-      <h2>ACME</h2>
+      <h2 onClick={goToHome}>ACME</h2>
       <input type="text" placeholder="Buscar Paciente" onChange={handleChange} />
       <button onClick={handleClick}>Cadastrar Paciente</button>
     </S.Header>

@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <ul>
       {patient && patient.map((p) => {
-        return <PatientCard key={p.id} name={p.name} birthDate={p.birthDate} gender={p.gender} cpf={p.cpf} active={p.userActive} />
+        return <PatientCard key={p.id} id={p.id} name={p.name} birthDate={p.birthDate} gender={p.gender} cpf={p.cpf} active={p.userActive} />
       })}
     </ul>
   )
