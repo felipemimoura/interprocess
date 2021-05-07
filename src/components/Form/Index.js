@@ -1,22 +1,25 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import Input from '../Inputs/Index'
 import Button from '../Button/Index'
 import useForm from '../../hooks/useForm'
-
-
+import { useHistory } from 'react-router-dom'
+import { goTo } from '../../Routes/Coordinator'
+import { UserContext } from '../../UserContext'
 
 const Form = () => {
-  const [pacientes, setPacientes] = useState([])
+  const { states, setters } = useContext(UserContext)
+  const pacientes = [...states.patient]
+  const history = useHistory()
   const name = useForm()
   const birthdate = useForm()
   const cpf = useForm("cpf")
   const userActive = useForm()
   const gender = useForm()
 
-
   const handleSubmit = (event) => {
     event.preventDefault()
     const addPatient = {
+      id: pacientes.length,
       name: name.value,
       birthDate: birthdate.value,
       cpf: cpf.value,
@@ -24,9 +27,11 @@ const Form = () => {
       userActive: userActive.value
     }
     pacientes.push(addPatient)
-    localStorage.setItem('patient', JSON.stringify(pacientes))
+    window.localStorage.setItem('patient', JSON.stringify(pacientes))
+    setters.setPatient(pacientes)
+    setters.setPatientFilter(pacientes)
+    goTo(history, "/", "")
   }
-
   return (
     <form onSubmit={handleSubmit}>
       <h1>Cadastro</h1>

@@ -1,6 +1,5 @@
 import './App.css';
-import Form from './components/Form/Index';
-import Home from './components/Home/Index';
+import Router from './Routes/Router';
 import { UserStorage } from './UserContext';
 
 function App() {
@@ -8,8 +7,7 @@ function App() {
   return (
     <div className="App">
       <UserStorage>
-        <Home />
-        {/* <Form /> */}
+        <Router />
       </UserStorage>
     </div>
   );
