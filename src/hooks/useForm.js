@@ -8,8 +8,10 @@ const types = {
 }
 
 const useForm = (type) => {
-  const [value, setValue] = useState("")
+  const [value, setValue] = useState()
   const [error, setError] = useState(null)
+
+
 
   function validateCPF(value) {
     if (type === false) return true

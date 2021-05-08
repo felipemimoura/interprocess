@@ -4,6 +4,7 @@ import Home from '../components/Home/Index'
 import Form from '../components/Form/Index'
 import Header from '../components/Header/Index';
 import Edit from '../components/Edit/Index';
+import Cadastro from '../components/Cadastrar/Index';
 
 const Router = () => {
   return (
@@ -17,7 +18,7 @@ const Router = () => {
           <Edit />
         </Route>
         <Route exact path="/cadastro">
-          <Form title="Cadastro" />
+          <Cadastro title="Cadastro" />
         </Route>
 
       </Switch>
