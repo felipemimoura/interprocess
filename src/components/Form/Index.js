@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 import { goTo } from '../../Routes/Coordinator'
 import { UserContext } from '../../UserContext'
 
-const Form = () => {
+const Form = ({ title }) => {
   const { states, setters } = useContext(UserContext)
   const pacientes = [...states.patient]
   const history = useHistory()
@@ -34,7 +34,7 @@ const Form = () => {
   }
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Cadastro</h1>
+      <h1>{title}</h1>
       <Input label="Nome Completo" type="text" name="fullName" {...name} />
       <Input label="Data de Nascimento" type="date" name="birthdate"{...birthdate} />
       <Input label="CPF" type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" {...cpf} />

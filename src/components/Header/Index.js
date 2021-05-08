@@ -23,7 +23,7 @@ const Header = () => {
 
 
 
-  const goToHome = () =>{
+  const goToHome = () => {
     goTo(history, "/", "")
   }
   const handleClick = () => {
