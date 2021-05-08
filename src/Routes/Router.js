@@ -17,7 +17,7 @@ const Router = () => {
           <Edit />
         </Route>
         <Route exact path="/cadastro">
-          <Form />
+          <Form title="Cadastro" />
         </Route>
 
       </Switch>

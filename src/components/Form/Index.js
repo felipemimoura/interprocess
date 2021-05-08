@@ -5,8 +5,9 @@ import useForm from '../../hooks/useForm'
 import { useHistory } from 'react-router-dom'
 import { goTo } from '../../Routes/Coordinator'
 import { UserContext } from '../../UserContext'
+import * as S from './Styles'
 
-const Form = () => {
+const Form = ({ title }) => {
   const { states, setters } = useContext(UserContext)
   const pacientes = [...states.patient]
   const history = useHistory()
@@ -33,26 +34,29 @@ const Form = () => {
     goTo(history, "/", "")
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Cadastro</h1>
+    <S.Form onSubmit={handleSubmit}>
+      <h1>{title}</h1>
       <Input label="Nome Completo" type="text" name="fullName" {...name} />
       <Input label="Data de Nascimento" type="date" name="birthdate"{...birthdate} />
       <Input label="CPF" type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" {...cpf} />
-      <select {...gender}>
-        <option value="" selected disabled hidden>Escolha o sexo do paciente</option>
-        <option value="male" >
-          Masculino
-      </option>
-        <option value="female">
-          Feminino
-      </option>
-      </select>
-      <Input label="Usuário Ativo" type="checkbox" {...userActive} />
+      <S.Label>
+        <span>Sexo: </span>
+        <S.Select {...gender}>
+          <option value="" selected disabled hidden>Escolha o sexo do paciente</option>
+          <option value="male" >
+            Masculino
+          </option>
+          <option value="female">
+            Feminino
+          </option>
+        </S.Select>
+        <Input label="Usuário Ativo" type="checkbox" {...userActive} />
+      </S.Label>
 
       <Button>
         Cadastrar
       </Button>
-    </form>
+    </S.Form>
   )
 }
 
