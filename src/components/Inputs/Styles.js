@@ -1,7 +1,7 @@
 import styled, * as S from 'styled-components'
 
 export const Label = styled.label`
-  border-bottom: 1px solid black;
+  /* border-bottom: */
   padding: 0.5rem;
   margin: 0.5rem;
   text-align: left;
