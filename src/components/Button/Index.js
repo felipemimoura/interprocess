@@ -1,10 +1,11 @@
 import React from 'react'
+import * as S from './Styles'
 
 const Button = ({ children }) => {
   return (
-    <button>
+    <S.Button>
       {children}
-    </button>
+    </S.Button>
   )
 }
 

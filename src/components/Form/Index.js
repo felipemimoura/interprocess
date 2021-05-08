@@ -7,7 +7,7 @@ import { goTo } from '../../Routes/Coordinator'
 import { UserContext } from '../../UserContext'
 import * as S from './Styles'
 
-const Form = ({ title }) => {
+const Form = ({ title , button}) => {
   const { states, setters } = useContext(UserContext)
   const pacientes = [...states.patient]
   const history = useHistory()
@@ -54,7 +54,7 @@ const Form = ({ title }) => {
       </S.Label>
 
       <Button>
-        Cadastrar
+        {button}
       </Button>
     </S.Form>
   )
