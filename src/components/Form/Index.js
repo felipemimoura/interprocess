@@ -7,7 +7,7 @@ import { goTo } from '../../Routes/Coordinator'
 import { UserContext } from '../../UserContext'
 import * as S from './Styles'
 
-const Form = ({ title , button}) => {
+const Form = ({ title, button, patient }) => {
   const { states, setters } = useContext(UserContext)
   const pacientes = [...states.patient]
   const history = useHistory()
@@ -16,7 +16,6 @@ const Form = ({ title , button}) => {
   const cpf = useForm("cpf")
   const userActive = useForm()
   const gender = useForm()
-
   const handleSubmit = (event) => {
     event.preventDefault()
     const addPatient = {
@@ -33,31 +32,62 @@ const Form = ({ title , button}) => {
     setters.setPatientFilter(pacientes)
     goTo(history, "/", "")
   }
-  return (
-    <S.Form onSubmit={handleSubmit}>
-      <h1>{title}</h1>
-      <Input label="Nome Completo" type="text" name="fullName" {...name} />
-      <Input label="Data de Nascimento" type="date" name="birthdate"{...birthdate} />
-      <Input label="CPF" type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" {...cpf} />
-      <S.Label>
-        <span>Sexo: </span>
-        <S.Select {...gender}>
-          <option value="" selected disabled hidden>Escolha o sexo do paciente</option>
-          <option value="male" >
-            Masculino
-          </option>
-          <option value="female">
-            Feminino
-          </option>
-        </S.Select>
-        <Input label="Usuário Ativo" type="checkbox" {...userActive} />
-      </S.Label>
+  if (patient) {
+    console.log(patient)
+    return (
+      <S.Form onSubmit={handleSubmit}>
+        <h1>{title}</h1>
+        <Input label="Nome Completo" type="text" name="fullName" value={patient.name} />
+        <Input label="Data de Nascimento" type="date" name="birthdate" value={patient.birthDate} />
+        <Input label="CPF" type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" value={patient.cpf} />
+        <S.Label>
+          <span>Sexo: </span>
+          <S.Select {...gender}>
+            <option value="" selected disabled hidden>Escolha o sexo do paciente</option>
+            <option value="male" >
+              Masculino
+            </option>
+            <option value="female">
+              Feminino
+            </option>
+          </S.Select>
+          <Input label="Usuário Ativo" type="checkbox"/>
+        </S.Label>
 
-      <Button>
-        {button}
-      </Button>
-    </S.Form>
-  )
+        <Button>
+          {button}
+        </Button>
+      </S.Form>
+    )
+  } else {
+    return (
+      <S.Form onSubmit={handleSubmit}>
+        <h1>{title}</h1>
+        <Input label="Nome Completo" type="text" name="fullName" {...name} />
+        <Input label="Data de Nascimento" type="date" name="birthdate"{...birthdate} />
+        <Input label="CPF" type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" {...cpf} />
+        <S.Label>
+          <span>Sexo: </span>
+          <S.Select {...gender}>
+            <option value="" selected disabled hidden>Escolha o sexo do paciente</option>
+            <option value="male" >
+              Masculino
+            </option>
+            <option value="female">
+              Feminino
+            </option>
+          </S.Select>
+          <Input label="Usuário Ativo" type="checkbox" {...userActive} />
+        </S.Label>
+
+        <Button>
+          {button}
+        </Button>
+      </S.Form>
+    )
+  }
+
+
 }
 
 export default Form

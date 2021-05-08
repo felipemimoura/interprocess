@@ -1,4 +1,4 @@
-import styled, * as S from 'styled-components'
+import styled from 'styled-components'
 
 export const Label = styled.label`
   /* border-bottom: */
