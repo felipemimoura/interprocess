@@ -1,11 +1,12 @@
 import React from 'react'
+import * as S from './Styles'
 
 const Input = ({ label, type, name, placeholder, value, onChange, onBlur, checked }) => {
   return (
     <>
-      <label htmlFor={name}>
+      <S.Label htmlFor={name}>
         {label}
-      </label>
+      </S.Label>
       <input type={type} id={name} name={name} placeholder={placeholder} value={value} onChange={onChange} onBlur={onBlur} checked={checked} />
     </>
   )
