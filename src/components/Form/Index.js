@@ -39,16 +39,19 @@ const Form = ({ title }) => {
       <Input label="Nome Completo" type="text" name="fullName" {...name} />
       <Input label="Data de Nascimento" type="date" name="birthdate"{...birthdate} />
       <Input label="CPF" type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" {...cpf} />
-      <select {...gender}>
-        <option value="" selected disabled hidden>Escolha o sexo do paciente</option>
-        <option value="male" >
-          Masculino
-      </option>
-        <option value="female">
-          Feminino
-      </option>
-      </select>
-      <Input label="Usuário Ativo" type="checkbox" {...userActive} />
+      <label>
+        <span>Sexo: </span>
+        <select {...gender}>
+          <option value="" selected disabled hidden>Escolha o sexo do paciente</option>
+          <option value="male" >
+            Masculino
+          </option>
+          <option value="female">
+            Feminino
+          </option>
+        </select>
+        <Input label="Usuário Ativo" type="checkbox" {...userActive} />
+      </label>
 
       <Button>
         Cadastrar
