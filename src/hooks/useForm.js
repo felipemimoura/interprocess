@@ -25,6 +25,7 @@ const useForm = (type) => {
   }
 
   function onChange(e) {
+    console.log(e.target.value)
     if (error) validateCPF(e.target.value)
     if (e.target.type === "checkbox") {
       setValue(e.target.checked)
