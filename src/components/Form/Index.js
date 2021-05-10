@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 import { goTo } from '../../Routes/Coordinator'
 import { UserContext } from '../../UserContext'
 import * as S from './Styles'
-import { CreatePatient } from '../../helpers/CreatePatient'
+
 
 const Form = ({ title, button, patient }) => {
   const { states, setters } = useContext(UserContext)
@@ -17,7 +17,8 @@ const Form = ({ title, button, patient }) => {
   const cpf = useForm("cpf")
   const userActive = useForm()
   const gender = useForm()
-  const { onChange } = useForm()
+  const address = useForm()
+ 
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -29,6 +30,7 @@ const Form = ({ title, button, patient }) => {
       gender: gender.value,
       userActive: userActive.value
     }
+
  
     pacientes.push(addPatient)
     window.localStorage.setItem('patient', JSON.stringify(pacientes))
@@ -38,13 +40,13 @@ const Form = ({ title, button, patient }) => {
   }
 
   if (patient) {
-    console.log(patient)
     return (
       <S.Form onSubmit={handleSubmit}>
         <h1>{title}</h1>
-        <Input label="Nome Completo" type="text" name="fullName" value={patient.name} onChange={onChange} />
-        <Input label="Data de Nascimento" type="date" name="birthdate" value={patient.birthDate} />
-        <Input label="CPF" type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" value={patient.cpf} />
+        <Input label="Nome Completo" type="text" name="fullName" required value={patient.name}  />
+        <Input label="Data de Nascimento" type="date" name="birthdate" required value={patient.birthDate} />
+        <Input label="CPF" type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" required value={patient.cpf} />
+        <Input label="Endereço" type="text" name="endereco" value={patient.cpf} />
         <S.Label>
           <span>Sexo: </span>
           <S.Select {...gender}>
@@ -56,7 +58,7 @@ const Form = ({ title, button, patient }) => {
               Feminino
             </option>
           </S.Select>
-          <Input label="Usuário Ativo" type="checkbox" />
+          <Input required label="Usuário Ativo" type="checkbox" />
         </S.Label>
 
         <Button>
@@ -68,9 +70,10 @@ const Form = ({ title, button, patient }) => {
     return (
       <S.Form onSubmit={handleSubmit}>
         <h1>{title}</h1>
-        <Input label="Nome Completo" type="text" name="fullName" {...name} />
-        <Input label="Data de Nascimento" type="date" name="birthdate"{...birthdate} />
-        <Input label="CPF" type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" {...cpf} />
+        <Input label="Nome Completo" type="text" name="fullName" required {...name} />
+        <Input label="Data de Nascimento" type="date" name="birthdate" required {...birthdate} />
+        <Input label="CPF" type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" required {...cpf} />
+        <Input label="Endereço" type="text" name="endereco"  {...address}  />
         <S.Label>
           <span>Sexo: </span>
           <S.Select {...gender}>
@@ -82,7 +85,7 @@ const Form = ({ title, button, patient }) => {
               Feminino
             </option>
           </S.Select>
-          <Input label="Usuário Ativo" type="checkbox" {...userActive} />
+          <Input required label="Usuário Ativo" type="checkbox" {...userActive} />
         </S.Label>
 
         <Button>
