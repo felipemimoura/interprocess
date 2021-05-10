@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 import { goTo } from '../../Routes/Coordinator'
 import { UserContext } from '../../UserContext'
 import * as S from './Styles'
+import { CreatePatient } from '../../helpers/CreatePatient'
 
 const Form = ({ title, button, patient }) => {
   const { states, setters } = useContext(UserContext)
@@ -16,6 +17,8 @@ const Form = ({ title, button, patient }) => {
   const cpf = useForm("cpf")
   const userActive = useForm()
   const gender = useForm()
+  const { onChange } = useForm()
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const addPatient = {
@@ -26,18 +29,20 @@ const Form = ({ title, button, patient }) => {
       gender: gender.value,
       userActive: userActive.value
     }
+ 
     pacientes.push(addPatient)
     window.localStorage.setItem('patient', JSON.stringify(pacientes))
     setters.setPatient(pacientes)
     setters.setPatientFilter(pacientes)
     goTo(history, "/", "")
   }
+
   if (patient) {
     console.log(patient)
     return (
       <S.Form onSubmit={handleSubmit}>
         <h1>{title}</h1>
-        <Input label="Nome Completo" type="text" name="fullName" value={patient.name} />
+        <Input label="Nome Completo" type="text" name="fullName" value={patient.name} onChange={onChange} />
         <Input label="Data de Nascimento" type="date" name="birthdate" value={patient.birthDate} />
         <Input label="CPF" type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" value={patient.cpf} />
         <S.Label>
@@ -51,7 +56,7 @@ const Form = ({ title, button, patient }) => {
               Feminino
             </option>
           </S.Select>
-          <Input label="Usuário Ativo" type="checkbox"/>
+          <Input label="Usuário Ativo" type="checkbox" />
         </S.Label>
 
         <Button>
