@@ -11,8 +11,6 @@ const useForm = (type) => {
   const [value, setValue] = useState()
   const [error, setError] = useState(null)
 
-
-
   function validateCPF(value) {
     if (type === false) return true
     if (types[type] && !types[type].regex.test(value)) {
@@ -25,7 +23,6 @@ const useForm = (type) => {
   }
 
   function onChange(e) {
-    console.log(e.target.value)
     if (error) validateCPF(e.target.value)
     if (e.target.type === "checkbox") {
       setValue(e.target.checked)

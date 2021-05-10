@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <S.ListContainer>
       {patient && patient.map((p) => {
-        return <PatientCard key={p.id} id={p.id} name={p.name} birthDate={p.birthDate} gender={p.gender} cpf={p.cpf} active={p.userActive} />
+        return <PatientCard key={p.id} id={p.id} name={p.name} birthDate={p.birthDate} gender={p.gender} cpf={p.cpf} address={p.address} active={p.userActive} />
       })}
     </S.ListContainer>
   )
