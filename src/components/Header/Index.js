@@ -18,7 +18,6 @@ const Header = () => {
   useEffect(() => {
     const result = paciente.filter(p => p.name.toLowerCase().includes(searchInput))
     setters.setPatientFilter(result)
-
   }, [searchInput])
 
 

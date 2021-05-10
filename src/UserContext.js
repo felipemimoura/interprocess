@@ -10,7 +10,6 @@ export const UserStorage = ({ children }) => {
   useEffect(() => {
     const patient = JSON.parse(localStorage.getItem("patient"))
 
-
     if (patient) {
       setPatient(patient)
       setPatientFilter(patient)
